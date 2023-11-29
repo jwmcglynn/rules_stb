@@ -1,37 +1,29 @@
 load("@stb//:stb.bzl", "stb_library")
 
 STB_COPTS = [
-    "-Wno-sign-conversion",
-    "-Wno-conversion",
-    "-Wno-old-style-cast",
-    "-Wno-useless-cast",
-    "-Wno-shadow",
-    "-Wno-double-promotion",
-    "-Wno-unused-parameter",
-    "-Wno-maybe-uninitialized",
-    "-Wno-type-limits",
-    "-Wno-zero-as-null-pointer-constant",
-    "-Wno-cast-qual",
+    # "-Wno-sign-conversion",
+    # "-Wno-conversion",
+    # "-Wno-old-style-cast",
+    # "-Wno-useless-cast",
+    # "-Wno-shadow",
+    # "-Wno-double-promotion",
+    # "-Wno-unused-parameter",
+    # "-Wno-maybe-uninitialized",
+    # "-Wno-type-limits",
+    # "-Wno-zero-as-null-pointer-constant",
+    # "-Wno-cast-qual",
 ]
-
-stb_library(
-    "stb",
-    emit_definition_macro = "STB_DEFINE",
-    stb_prefix = False,
-    copts = STB_COPTS + [
-        "-Wno-sign-compare",
-        "-Wno-missing-field-initializers",
-        "-Wno-unused-value",
-        "-Wno-unused-but-set-variable",
-        "-Wno-format-overflow",
-        "-fno-strict-aliasing",
-    ]
-)
 
 stb_library(
     name = "c_lexer",
     emit_definition_macro = "STB_C_LEXER_IMPLEMENTATION",
-    copts = STB_COPTS + ["-Wno-unused-function"]
+    copts = STB_COPTS
+)
+
+stb_library(
+    name = "connected_components",
+    emit_definition_macro = "STB_CONNECTED_COMPONENTS_IMPLEMENTATION",
+    copts = STB_COPTS
 )
 
 stb_library(
@@ -55,16 +47,19 @@ stb_library(
 stb_library(
     name = "easy_font",
     emit_definition_macro = "STB_EASY_FONT_IMPLEMENTATION",
-    copts = STB_COPTS + ["-Wno-unused-function"]
+    copts = STB_COPTS
 )
 
 stb_library(
     name = "herringbone_wang_tile",
     emit_definition_macro = "STB_HERRINGBONE_WANG_TILE_IMPLEMENTATION",
-    copts = STB_COPTS + [
-        "-Wno-strict-overflow",
-        "-Wno-missing-field-initializers",
-    ]
+    copts = STB_COPTS
+)
+
+stb_library(
+    name = "hexwave",
+    emit_definition_macro = "STB_HEXWAVE_IMPLEMENTATION",
+    copts = STB_COPTS
 )
 
 stb_library(
@@ -74,7 +69,7 @@ stb_library(
 )
 
 stb_library(
-    name = "image_resize",
+    name = "image_resize2",
     emit_definition_macro = "STB_IMAGE_RESIZE_IMPLEMENTATION",
     copts = STB_COPTS
 )
@@ -88,7 +83,7 @@ stb_library(
 stb_library(
     name = "include",
     emit_definition_macro = "STB_INCLUDE_IMPLEMENTATION",
-    copts = STB_COPTS + ["-Wno-unused-value"]
+    copts = STB_COPTS
 )
 
 stb_library(
@@ -112,9 +107,19 @@ stb_library(
 stb_library(
     name = "sprintf",
     emit_definition_macro = "STB_SPRINTF_IMPLEMENTATION",
-    copts = STB_COPTS + [
-        "-fno-strict-aliasing",
-    ],
+    copts = STB_COPTS
+)
+
+stb_library(
+    name = "textedit",
+    emit_definition_macro = "STB_TRUETYPE_IMPLEMENTATION",
+    copts = STB_COPTS
+)
+
+stb_library(
+    name = "tilemap_editor",
+    emit_definition_macro = "STB_TRUETYPE_IMPLEMENTATION",
+    copts = STB_COPTS
 )
 
 stb_library(
