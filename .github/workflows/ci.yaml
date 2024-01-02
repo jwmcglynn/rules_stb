@@ -1,0 +1,37 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-22.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install bazelisk
+      run: |
+        mkdir -p "${GITHUB_WORKSPACE}/bin/"
+        wget https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64 -O "${GITHUB_WORKSPACE}/bin/bazel"
+        chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
+
+    - name: Build
+      run: |
+        "${GITHUB_WORKSPACE}/bin/bazel" build //...
+
+    - name: Build (no bzlmod)
+      run: |
+        "${GITHUB_WORKSPACE}/bin/bazel" build --noenable_bzlmod //...
