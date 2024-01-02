@@ -24,3 +24,9 @@ git_repository(
 ```
 You can then use the `stb` libraries via the `@stb` label.
 For example you can add `@stb//:image` to your `deps` to use `stb_image`.
+
+## Updating stb
+
+```sh
+git subtree pull --prefix=src src master --squash
+```
